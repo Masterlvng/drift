@@ -40,10 +40,9 @@ int main()
 	coro_line_t l;
 	HelloCoro* lilei = new HelloCoro("lilei", &l, 0);
 	lilei->resume();
-//	HelloCoro* mary  = new HelloCoro("mary", &l, 0);
-//	mary->resume();
-//	HelloCoro* tom = new HelloCoro("tom", &l, 0);
-//	tom->resume();
+	cout << "ok, i wait" << endl;
+	lilei->resume();
+
 	return 0;
 }
 

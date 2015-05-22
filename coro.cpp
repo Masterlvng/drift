@@ -29,7 +29,7 @@ Coro::Coro(coro_line_t *l, void* data)
 	coro->context.uc_stack.ss_flags = 0;
 	coro->context.uc_link = NULL;
 
-	makecontext(&coro->context, (void (*)())&Coro::entry_point, 1, coro);
+	makecontext(&coro->context, (void (*)())&Coro::entry_point, 1, this);
 }
 
 Coro::~Coro()
