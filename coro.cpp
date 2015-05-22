@@ -21,7 +21,7 @@ Coro::Coro(coro_line_t *l, void* data)
 	this->coro->isdone   = false;
 	this->coro->yield_value = 0;
 
-	unsigned char *stack = (unsigned char *)(coro + 1);
+	unsigned char *stack = (unsigned char *)(this->coro + 1);
 	getcontext(&coro->context);
 
 	coro->context.uc_stack.ss_sp = stack;
@@ -29,7 +29,7 @@ Coro::Coro(coro_line_t *l, void* data)
 	coro->context.uc_stack.ss_flags = 0;
 	coro->context.uc_link = NULL;
 
-	makecontext(&coro->context, (void (*)())Coro::entry_point, 1, coro);
+	makecontext(&coro->context, (void (*)())&Coro::entry_point, 1, coro);
 }
 
 Coro::~Coro()
