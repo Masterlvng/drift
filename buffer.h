@@ -2,12 +2,16 @@
  * buffer.h
  *
  *  Created on: 2015年5月25日
- *      Author: duowan-PC
+ *      Author: zhangliangfu
  */
 
 #ifndef BUFFER_H_
 #define BUFFER_H_
 
+#include <string>
+
+namespace drift
+{
 class Buffer{
 	public:
 		Buffer(int total);
@@ -46,6 +50,8 @@ class Buffer{
 			data_ += num;
 		}
 
+		int append(char *buf, int size);
+
 		void nice();
 		int grow();
 
@@ -58,7 +64,7 @@ class Buffer{
 		int total_;
 		int origin_total;
 };
-
+};
 
 
 #endif /* BUFFER_H_ */

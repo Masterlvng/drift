@@ -6,6 +6,9 @@
  */
 
 #include "buffer.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 using namespace drift;
 
@@ -38,7 +41,7 @@ int Buffer::grow(){
 	}
 
 	char *p = (char *)realloc(buf, n);
-	if(p == NULL){
+	if(p == 0){
 		return -1;
 	}
 	data_ = p + (data_ - buf);
@@ -53,6 +56,21 @@ std::string Buffer::stats() const{
 	sprintf(str, "total: %d, data: %d, size: %d, slot: %d",
 		total_, (int)(data_ - buf), size_, (int)(slot() - buf));
 	return std::string(str);
+}
+
+int Buffer::append(char *buf, int size)
+{
+	while(size > this->space())
+	{
+		if(this->grow() == -1)
+		{
+			return -1;
+		}
+	}
+
+	memcpy(this->slot(), buf, size);
+	size_ += size;
+	return size;
 }
 
 
