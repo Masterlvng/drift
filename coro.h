@@ -26,6 +26,11 @@ namespace drift
 	class Coro
 	{
 	public:
+		enum {
+		    CORO_ABORT = -1,
+		    CORO_MAY_RESUME = 0,
+		    CORO_FINISHED = 1
+		};
 		Coro(coro_line_t *l, void* data);
 		virtual ~Coro();
 		int resume();
