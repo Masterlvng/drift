@@ -8,7 +8,22 @@
 #ifndef CONN_H_
 #define CONN_H_
 
-class Conn;
+#include "coro.h"
+
+namespace drift
+{
+	class Conn
+	{
+	public:
+		int read();
+		int write();
+
+	private:
+		int fd;
+		Coro* coro;
+
+	};
+};
 
 
 
