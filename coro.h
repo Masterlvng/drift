@@ -53,6 +53,15 @@ namespace drift
 		};
 		coro_t* coro;
 	};
+
+	class DriftCoro : public Coro
+	{
+	public:
+		DriftCoro(coro_line_t *l, void* data);
+		virtual ~DriftCoro();
+		virtual int proc();
+		virtual void handle() = 0;
+	};
 };
 
 

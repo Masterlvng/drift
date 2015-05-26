@@ -6,6 +6,7 @@
  */
 
 #include "coro.h"
+#include "conn.h"
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
@@ -86,3 +87,26 @@ void Coro::entry_point(Coro* coro)
     coro->setdone(true);
     coro->yield(return_value);
 }
+
+DriftCoro::DriftCoro(coro_line_t *l, void* data):Coro(l, data)
+{
+
+}
+
+DriftCoro::~DriftCoro()
+{
+
+}
+
+int DriftCoro::proc()
+{
+	Conn *conn = (Conn*)get_data();
+	while(true)
+	{
+		//prepare message
+
+		//handle message
+	}
+	return CORO_FINISHED;
+}
+
